@@ -1,0 +1,16 @@
+participants:
+  - el_type: geth       # This param defines the execution layer type 
+    cl_type: lighthouse # This param defines the consensus layer typpe
+    count: 2            # This param clones this participant el and cl types, so we here are defined 2 clients
+  - el_type: geth
+    cl_type: teku
+
+network_params:
+  network_id: "31051992"   # The 'ChainID' of the network, here was set a non-used one (to check this, was used the https://chainlist.org/ website)
+
+  prefunded_accounts: '{"0x54674Ba3b21eEa5d009033e140402F12895F52dC": {"balance": "100ETH"},
+                         "0x747a2a9A314795b9C34D497A28b1980f344F5316": {"balance": "50ETH"},
+                         "0xA0f952ac9b99aA1658f56ebC8661e57eDA7da49C": {"balance": "15ETH"}}'
+
+additional_services:
+  - dora

@@ -373,3 +373,47 @@ Removed file [testes.txt] from the list.
 [2024-04-15 14:49] [INFO] Removed file [wallet.txt] from the list.
 [2024-04-15 14:49] [INFO] Adding file [wallet.txt] to the list.
 [2024-04-15 14:50] [INFO] Removed file [wallet.txt] from the list.
+[2026-08-09 09:37] [INFO] Adding file [UTC--2026-08-08T13-20-48.715500666Z--a0f952ac9b99aa1658f56ebc8661e57eda7da49c] to the list.
+[2026-08-09 09:37] [INFO] Adding file [UTC--2026-08-08T13-18-40.632833097Z--747a2a9a314795b9c34d497a28b1980f344f5316] to the list.
+[2026-08-09 09:38] [INFO] Adding file [UTC--2026-08-08T13-17-20.383195522Z--54674ba3b21eea5d009033e140402f12895f52dc] to the list.
+[2026-08-09 09:51] [INFO] Scylla turned ON
+[2026-08-09 09:52] [DENIED] GPID [23663] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 09:52] [DENIED] GPID [15316] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 09:52] [INFO] Scylla turned OFF
+[2026-08-09 09:53] [INFO] Scylla turned ON
+[2026-08-09 09:53] [DENIED] GPID [23703] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 09:59] [INFO] Removed file [UTC--2026-08-08T13-17-20.383195522Z--54674ba3b21eea5d009033e140402f12895f52dc] from the list.
+[2026-08-09 09:59] [INFO] Scylla turned ON
+[2026-08-09 10:00] [INFO] Scylla turned OFF
+[2026-08-09 10:00] [INFO] Adding file [UTC--2026-08-08T13-17-20.383195522Z--54674ba3b21eea5d009033e140402f12895f52dc] to the list.
+[2026-08-09 10:00] [INFO] Scylla turned ON
+[2026-08-09 10:00] [DENIED] GPID [24294] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 10:00] [INFO] Scylla turned OFF
+[2026-08-09 10:00] [INFO] Removed file [UTC--2026-08-08T13-17-20.383195522Z--54674ba3b21eea5d009033e140402f12895f52dc] from the list.
+[2026-08-09 10:00] [INFO] Scylla turned ON
+[2026-08-09 10:01] [INFO] Scylla turned OFF
+[2026-08-09 10:01] [INFO] Adding file [UTC--2026-08-08T13-17-20.383195522Z--54674ba3b21eea5d009033e140402f12895f52dc] to the list.
+[2026-08-09 10:01] [INFO] Scylla turned ON
+[2026-08-09 10:01] [DENIED] GPID [23836] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 10:01] [DENIED] GPID [24340] was blocked trying to read file [UTC--2026-08-08T13-20-48.71550]
+[2026-08-09 10:04] [INFO] Scylla turned ON
+[2026-08-09 10:04] [DENIED] GPID [24619] was blocked trying to read file [UTC--2026-08-08T13-17-20.38319]
+[2026-08-09 10:04] [ALLOWED] File [UTC--2026-08-08T13-17-20.38319] accessed by GPID [24369]
+[2026-08-09 10:04] [ALLOWED] File [UTC--2026-08-08T13-17-20.38319] accessed by GPID [24369]
+[2026-08-09 10:04] [INFO] Scylla turned OFF
+[2026-08-09 10:15] [INFO] Adding file [UTC--2026-08-08T13-18-40.632833097Z--747a2a9a314795b9c34d497a28b1980f344f5316] to the list.
+[2026-08-09 10:15] [INFO] Adding file [UTC--2026-08-08T13-20-48.715500666Z--a0f952ac9b99aa1658f56ebc8661e57eda7da49c] to the list.
+[2026-08-09 10:15] [INFO] Scylla turned ON
+[2026-08-09 10:16] [DENIED] GPID [25467] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:18] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:19] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:19] [ALLOWED] File [UTC--2026-08-08T13-20-48.71550] accessed by GPID [24369]
+[2026-08-09 10:21] [DENIED] GPID [25722] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
+[2026-08-09 10:21] [DENIED] GPID [25732] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
+[2026-08-09 10:22] [DENIED] GPID [25821] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
+[2026-08-09 10:22] [DENIED] GPID [25824] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]

@@ -70,14 +70,14 @@ class Scylla():
     # Populating maps
     ts_map[c_int(0)] = c_uint64(self.boot_epoch_ts)
 
-    permitted_pids_file = open("../evaluation/config/permitted_pids.txt", "r")
+    permitted_pids_file = open("../config/permitted_pids.txt", "r")
     line = permitted_pids_file.readline()
     while line:
       print("Copying " + line + " to eBPF map [permitted_processes_map]")
       permitted_processes_map[c_uint64(int(line))] = c_uint64(int(line))
       line = permitted_pids_file.readline()
 
-    inode_list_file = open("../evaluation/config/protected_inodes.txt", "r")
+    inode_list_file = open("../config/protected_inodes.txt", "r")
     line = inode_list_file.readline()
     while line:
       temp = line.split()

@@ -19,7 +19,7 @@ textview_buffer = []
 log = Log()
 prot_files = []
 
-with open("../evaluation/config/protected_inodes.txt","r") as file:
+with open("../config/protected_inodes.txt","r") as file:
   for line in file.readlines():
     temp = line.split()
     prot_files.append([int(temp[0]), temp[1]])
@@ -220,7 +220,7 @@ class ScyllaGUI(Gtk.Window):
           dt = datetime.fromtimestamp(time_s)
           log_timestamp = dt.strftime("%Y-%m-%d %H:%M")
 
-          with open("../evaluation/config/protected_inodes.txt","a") as file:
+          with open("../config/protected_inodes.txt","a") as file:
             text = str(inode) + ' ' + filename + '\n'
             file.write(text)
           file.close()
@@ -248,7 +248,7 @@ class ScyllaGUI(Gtk.Window):
         dt = datetime.fromtimestamp(time_s)
         log_timestamp = dt.strftime("%Y-%m-%d %H:%M")
         
-        with open("../evaluation/config/protected_inodes.txt","r+") as file:
+        with open("../config/protected_inodes.txt","r+") as file:
           lines = file.readlines()
           file.seek(0)
           for line in lines:
@@ -315,7 +315,7 @@ def get_clef_gpid():
     clef_gpid_search = subprocess.run(["ps", "-e", "-o", "pid,comm"], stdout=subprocess.PIPE, text=True, check=True) # Run the ps command to get information about processes with the specified command name
     lines = clef_gpid_search.stdout.strip().split('\n')
     clef_gpid = [int(line.split()[0]) for line in lines[1:] if line.split()[-1] == 'clef'] # Split the output into lines and extract the PIDs for the specified program name
-    with open('../evaluation/config/permitted_pids.txt', 'w') as file:
+    with open('../config/permitted_pids.txt', 'w') as file:
       file.write(str(clef_gpid[0]))
   except subprocess.CalledProcessError:
     print(f"Error retrieving PIDs for 'clef'.")
