@@ -417,3 +417,12 @@ Removed file [testes.txt] from the list.
 [2026-08-09 10:21] [DENIED] GPID [25732] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
 [2026-08-09 10:22] [DENIED] GPID [25821] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
 [2026-08-09 10:22] [DENIED] GPID [25824] was blocked trying to read file [UTC--2026-08-08T13-18-40.63283]
+[2026-08-26 21:56] [INFO] Scylla turned ON
+[2026-08-26 21:56] [INFO] Scylla turned OFF
+[2026-08-26 21:56] [INFO] Adding file [Log.py] to the list.
+[2026-08-26 21:56] [INFO] Removed file [Log.py] from the list.
+[2026-08-26 21:57] [INFO] Adding file [curumin-key] to the list.
+[2026-08-26 21:57] [INFO] Scylla turned ON
+[2026-08-26 21:57] [DENIED] GPID [20907] was blocked trying to read file [curumin-key]
+[2026-08-26 21:57] [INFO] Scylla turned OFF
+[2026-08-26 21:57] [INFO] Removed file [curumin-key] from the list.
