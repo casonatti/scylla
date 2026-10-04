@@ -1,8 +1,9 @@
 from bcc import BPF
 from ctypes import *
 from Log import *
-import time
 from datetime import datetime
+import time
+import os
 
 class Scylla():
   def __init__(self, log):
@@ -15,7 +16,7 @@ class Scylla():
     self.boot_epoch_ts = current_epoch_ts - boot_relative_ts
 
     # Load eBPF program into de kernel and attach eBPF function to vfs_read syscall
-    program = "readMonitor.c"
+    program = "scylla_ebpf.c"
     self.b = BPF(src_file = program)
     self.b.attach_kprobe(event = "vfs_read", fn_name = "protected_file")
 
@@ -41,6 +42,11 @@ class Scylla():
   # Get info from eBPF program and generate logs
   def log_event(self, cpu, data, size):
     data = self.b["output"].event(data)
+    
+    gui_pid = os.getpid()
+    
+    if data.thread_gpid == gui_pid:
+      return
 
     filename = data.hooked_filename.decode("utf-8")
 
