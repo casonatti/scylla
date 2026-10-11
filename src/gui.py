@@ -25,9 +25,9 @@ class ProtectedFilesManager:
     if os.path.exists(self.config_path):
       with open(self.config_path, "r") as file:
         for line in file:
-          temp = line.split()
+          temp = line.split(None, 1)
           if len(temp) >= 2:
-            prot_files.append([int(temp[0]), temp[1]])
+            prot_files.append([int(temp[0]), temp[1].strip()])
     return prot_files
 
   def add_file(self, inode, filename):
@@ -114,6 +114,8 @@ class ScyllaGUI(Gtk.Window):
       else:
         text_renderer = Gtk.CellRendererText()
         tvcolumn = Gtk.TreeViewColumn(column_title, text_renderer, text=i)
+        if i == 2:
+          tvcolumn.set_cell_data_func(text_renderer, self._render_filename)
       self.prot_files_treeview.append_column(tvcolumn)
 
     scrollable_treelist = Gtk.ScrolledWindow()
@@ -204,6 +206,10 @@ class ScyllaGUI(Gtk.Window):
 
     self.log.append(state)
 
+  def _render_filename(self, column, cell, model, iter, data):
+    stored_path = model[iter][2]
+    cell.set_property("text", os.path.basename(stored_path) if stored_path else "")
+
   def on_button_toggled(self, cell_renderer, path):
     iter = self.prot_files_list.get_iter(path)
     if iter:
@@ -229,7 +235,7 @@ class ScyllaGUI(Gtk.Window):
 
     if response == Gtk.ResponseType.OK:
       filepath = dialog.get_filename()
-      filename = filepath.split("/")[-1]
+      filename = os.path.basename(filepath)
       inode = os.stat(filepath).st_ino
 
       repeated_inode = any(
@@ -240,8 +246,8 @@ class ScyllaGUI(Gtk.Window):
       if repeated_inode:
         print("Failed to add file. Repeated Inode.")
       else:
-        self.file_manager.add_file(inode, filename)
-        self.prot_files_list.append([False, inode, filename])
+        self.file_manager.add_file(inode, filepath)
+        self.prot_files_list.append([False, inode, filepath])
 
         log_timestamp = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M")
         self.log.append(f"[{log_timestamp}] [INFO] Adding file [{filename}] to the list.")
@@ -289,8 +295,8 @@ class ScyllaGUI(Gtk.Window):
           )
 
           if not repeated_inode:
-            self.file_manager.add_file(inode, filename)
-            self.prot_files_list.append([False, inode, filename])
+            self.file_manager.add_file(inode, filepath)
+            self.prot_files_list.append([False, inode, filepath])
             added_count += 1
 
       log_timestamp = datetime.fromtimestamp(time.time()).strftime("%Y-%m-%d %H:%M")
@@ -309,7 +315,7 @@ class ScyllaGUI(Gtk.Window):
       iter = self.prot_files_list.get_iter(path)
 
       if self.prot_files_list[iter][0]:
-        temp_name = self.prot_files_list[iter][2]
+        temp_name = os.path.basename(self.prot_files_list[iter][2])
         self.prot_files_list.remove(iter)
         removed_any = True
 

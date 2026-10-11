@@ -37,9 +37,21 @@ J. C. Caroly, E. J. Scheid, M. F. Franco and L. Z. Granville, "Securing Blockcha
 
 - **Protection Based on Inodes:** **Scylla** can be ajusted to protects itself and user-defined files based on their *inodes*, providing an additional layer of security.
 
+- **Tamper Protection:** Unauthorized processes cannot read, write, delete, rename, or rmdir protected files. Read/write attempts are intercepted with eBPF kprobes on `vfs_read`/`vfs_write`. Delete, rename, and rmdir are denied in-kernel with BPF LSM hooks (`inode_unlink`, `inode_rename`, `inode_rmdir`) before the filesystem change occurs. Scylla also sends `SIGKILL` to the offending process.
+
+Deletion/rename denial requires a kernel with `CONFIG_BPF_LSM` and BTF support, and `bpf` in the active LSM list. On Ubuntu this is usually enabled by adding `bpf` to the kernel `lsm=` boot parameter, for example:
+
+```
+lsm=lockdown,capability,landlock,yama,apparmor,bpf
+```
+
+Then run `sudo update-grub` and reboot. Verify with `cat /sys/kernel/security/lsm` — the list must include `bpf`. Run Scylla as root or with the required BPF capabilities.
+
+If BPF LSM is not active, Scylla still attaches `security_inode_unlink`/`rename`/`rmdir` kprobes and, when the config stores a resolvable path, sets the immutable file flag so delete/rename fail even if the kill races with the syscall. Turn Scylla off to restore the original flags.
+
 ## How it Works
 
-During execution, **Scylla** actively monitors the system calls of processes aiming to access sensitive files. This proactive approach allows it to intercept and prevent unauthorized attempts to read or modify the content of a file. Evaluations of **Scylla** demonstrate its capability to achieve these security objectives without introducing significant overhead to legitimate processes.
+During execution, **Scylla** actively monitors the system calls of processes aiming to access sensitive files. This proactive approach allows it to intercept and prevent unauthorized attempts to read, modify, delete, or rename a file. Evaluations of **Scylla** demonstrate its capability to achieve these security objectives without introducing significant overhead to legitimate processes.
 
 ## Comparison to Other Tools
 
