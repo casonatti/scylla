@@ -47,7 +47,13 @@ lsm=lockdown,capability,landlock,yama,apparmor,bpf
 
 Then run `sudo update-grub` and reboot. Verify with `cat /sys/kernel/security/lsm` — the list must include `bpf`. Run Scylla as root or with the required BPF capabilities.
 
-If BPF LSM is not active, Scylla still attaches `security_inode_unlink`/`rename`/`rmdir` kprobes and, when the config stores a resolvable path, sets the immutable file flag so delete/rename fail even if the kill races with the syscall. Turn Scylla off to restore the original flags.
+LSM attach also needs a BCC/libbpf that can parse this kernel’s BTF. Ubuntu 22.04’s `python3-bpfcc` 0.18 is linked to **libbpf 0.5**, which fails on kernel **6.8** BTF (`BPF.support_lsm()` prints `vmlinux BTF is not found` even though `/sys/kernel/btf/vmlinux` exists). You need **libbpf >= 1.0** and a BCC built against it (for example BCC from source, or Ubuntu 24.04’s `python3-bpfcc`). Confirm with:
+
+```
+python3 -c "from bcc import BPF; print(BPF.support_lsm())"
+```
+
+If BPF LSM is not usable, Scylla still attaches `security_inode_unlink`/`rename`/`rmdir` kprobes and, when the config stores a resolvable path, sets the immutable file flag so delete/rename fail even if the kill races with the syscall. Turn Scylla off to restore the original flags.
 
 ## How it Works
 

@@ -165,12 +165,12 @@ class ScyllaGUI(Gtk.Window):
     log_page.add(self.log_textview)
 
     # Graph Page
-    graph_page = Gtk.Box()
-    canvas = self.plot_graph()
-    graph_page.pack_start(canvas, True, True, 1)
+    #graph_page = Gtk.Box()
+    #canvas = self.plot_graph()
+    #graph_page.pack_start(canvas, True, True, 1)
 
     notebook.append_page(log_page, Gtk.Label(label="Log"))
-    notebook.append_page(graph_page, Gtk.Label(label="Graphs"))
+    #notebook.append_page(graph_page, Gtk.Label(label="Graphs"))
 
     vpaned_info.pack1(notebook, True, False)
 
